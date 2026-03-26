@@ -90,8 +90,8 @@ npm run dev
 ## 📸 Captures d'Écran additionnelles
 
 Ici seront placés vos différents screenshots dans le dossier `./screenshots/` :
-- `./screenshots/dashboard.png`
-- `./screenshots/revenue-forecast.png`
+- ./screenshots/dashboard.png
+- ./screenshots/revenue-forecast.png
 - `./screenshots/segments.png`
 - `./screenshots/anomalies.png`
 
