@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Customer data with segmentation
+model Customer {
+  id                String   @id @default(cuid())
+  age               Int
+  gender            String   // "male", "female", "other"
+  country           String
+  signupDate        DateTime
+  customerSegment   String   // "Bronze", "Silver", "Gold", "Platinum"
+  lifetimeValue     Float
+  churnRiskScore    Float    // 0-1
+  recencyDays       Int      // Days since last purchase
+  frequency         Int      // Number of purchases
+  monetary          Float    // Total spent
+  avgSessionDuration Float   // Average session duration in minutes
+  supportTickets    Int      // Number of support tickets
+  discountUsageRate Float    // Rate of discount usage
+  churned           Boolean  @default(false)
+  cluster           Int      @default(0) // KMeans cluster
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  transactions      Transaction[]
+}
+
+// Product catalog
+model Product {
+  id                String   @id @default(cuid())
+  name              String
+  category          String
+  price             Float
+  cost              Float
+  stockLevel        Int
+  restockThreshold  Int
+  supplierId        String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  transactions      Transaction[]
+}
+
+// Transaction records (simulating 10M rows)
+model Transaction {
+  id               String   @id @default(cuid())
+  customerId       String
+  productId        String
+  category         String
+  amount           Float
+  quantity         Int
+  timestamp        DateTime
+  country          String
+  deviceType       String   // "desktop", "mobile", "tablet"
+  discountApplied  Boolean  @default(false)
+  paymentMethod    String   // "credit_card", "paypal", "bank_transfer", "crypto"
+  createdAt        DateTime @default(now())
+  
+  customer         Customer  @relation(fields: [customerId], references: [id])
+  product          Product   @relation(fields: [productId], references: [id])
+  
+  @@index([timestamp])
+  @@index([customerId])
+  @@index([productId])
+  @@index([category])
+}
+
+// ML Predictions tracking
+model MLPrediction {
+  id               String   @id @default(cuid())
+  modelName        String   // "revenue_forecast", "churn_prediction", etc.
+  predictedValue   Float
+  actualValue      Float?
+  confidenceScore  Float
+  predictionDate   DateTime
+  targetDate       DateTime
+  modelVersion     String
+  lowerBound       Float?
+  upperBound       Float?
+  createdAt        DateTime @default(now())
+  
+  @@index([modelName])
+  @@index([predictionDate])
+}
+
+// Daily revenue aggregation (pre-computed for performance)
+model DailyRevenue {
+  id              String   @id @default(cuid())
+  date            DateTime @unique
+  revenue         Float
+  transactions    Int
+  avgOrderValue   Float
+  isAnomaly       Boolean  @default(false)
+  anomalyScore    Float?
+  anomalySeverity String?  // "low", "medium", "high"
+  createdAt       DateTime @default(now())
+  
+  @@index([date])
+}
+
+// Customer segments (RFM analysis results)
+model CustomerSegment {
+  id              String   @id @default(cuid())
+  clusterId       Int      @unique
+  segmentName     String   // "Hibernating", "At-Risk", "Loyal", "Champions"
+  segmentSize     Int
+  avgRecency      Float
+  avgFrequency    Float
+  avgMonetary     Float
+  avgLTV          Float
+  color           String   // Hex color for visualization
+  description     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Product performance metrics
+model ProductPerformance {
+  id              String   @id @default(cuid())
+  productId       String   @unique
+  revenue         Float
+  margin          Float
+  unitsSold       Int
+  sellThroughRate Float
+  stockAlert      Boolean  @default(false)
+  trend30Day      String   // JSON array of 30-day revenue
+  rank            Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// System KPIs (cached values)
+model SystemKPI {
+  id                  String   @id @default(cuid())
+  key                 String   @unique
+  value               Float
+  previousValue       Float?
+  changePercent       Float?
+  label               String
+  description         String?
+  updatedAt           DateTime @updatedAt
+}
+
+// Anomaly detection results
+model AnomalyRecord {
+  id                  String   @id @default(cuid())
+  date                DateTime
+  type                String   // "revenue", "transactions", "orders"
+  severity            String   // "low", "medium", "high"
+  deviationPercent    Float
+  expectedValue       Float
+  actualValue         Float
+  description         String?
+  createdAt           DateTime @default(now())
+  
+  @@index([date])
+  @@index([type])
+}
