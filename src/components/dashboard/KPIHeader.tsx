@@ -106,13 +106,12 @@ function KPICard({ title, value, icon, trend, trendLabel, color, bgColor, delay 
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className="h-full"
     >
-      <Card className={`relative overflow-hidden h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1`} 
-            style={{ background: bgColor }}>
+      <Card className="relative overflow-hidden h-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-1">
         <CardContent className="p-4 sm:p-5">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 mb-1 truncate">{title}</p>
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+              <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 mb-1 truncate">{title}</p>
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
                 {format === 'currency' ? (
                   <AnimatedCounter value={value} formatter={formatValue} />
                 ) : (
@@ -143,10 +142,10 @@ function KPICard({ title, value, icon, trend, trendLabel, color, bgColor, delay 
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: delay + 0.2, type: "spring" }}
-              className="p-2.5 sm:p-3 rounded-xl shadow-md"
-              style={{ backgroundColor: color }}
+              className="p-2 sm:p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50"
+              style={{ color: color }}
             >
-              <div className="text-white">{icon}</div>
+              <div>{icon}</div>
             </motion.div>
           </div>
         </CardContent>
