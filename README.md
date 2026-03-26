@@ -1,4 +1,4 @@
-# 📈 Atlas Analytics Platform
+   # # # # # #  Atlas Analytics Platform
 **Intelligence Business & Prédictions ML pour l'E-commerce**
 
 Une plateforme de dashboard analytique prédictif qui simule l'analyse de plus de 10M transactions, démontrant des insights basés sur le Machine Learning avec **+28% d'amélioration du chiffre d'affaires** et **35% de meilleures décisions stratégiques**.
