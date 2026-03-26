@@ -86,17 +86,14 @@ npm install
 npm run dev
 ```
 
-Accédez ensuite au dashboard via [http://localhost:3000](http://localhost:3000).
-
----
 
 ## 📸 Captures d'Écran additionnelles
 
 Ici seront placés vos différents screenshots dans le dossier `./screenshots/` :
-- `dashboard.png`
-- `revenue-forecast.png`
-- `segments.png`
-- `anomalies.png`
+- `./screenshots/dashboard.png`
+- `./screenshots/revenue-forecast.png`
+- `./screenshots/segments.png`
+- `./screenshots/anomalies.png`
 
 *(Vous pouvez ajouter ces images manuellement dans le dossier `screenshots/`).*
 
