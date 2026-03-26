@@ -3,13 +3,13 @@
 
 Une plateforme de dashboard analytique prédictif qui simule l'analyse de plus de 10M transactions, démontrant des insights basés sur le Machine Learning avec **+28% d'amélioration du chiffre d'affaires** et **35% de meilleures décisions stratégiques**.
 
-![Dashboard Preview](./screenshots/dashboard.png)
+![logo](./public/logo.png)
 
-> **💡 Note Importante** : Les données présentées dans ce dépôt sont des *mock datas* (données fictives) générées temporairement de manière statique afin de démontrer les capacités de l'interface et des modèles ML.
+> ** Note Importante** : Les données présentées dans ce dépôt sont des *mock datas* (données fictives) générées temporairement de manière statique afin de démontrer les capacités de l'interface et des modèles ML.
 
 ---
 
-## 🏗️ Architecture Système
+##  Architecture Système
 
 ```mermaid
 graph TB
@@ -67,7 +67,7 @@ flowchart LR
     style K fill:#fef2f2,stroke:#fecaca
 ```
 
-## 🛠️ Tech Stack & Technologies
+##  Tech Stack & Technologies
 
 | Couche | Technologies Utilisées |
 |-------|------------|
@@ -76,7 +76,7 @@ flowchart LR
 | **Design** | Tailwind CSS v4, shadcn/ui |
 | **Analytics (Simulé)** | scikit-learn (Modèles pré-calculés) |
 
-## 🚀 Installation & Lancement
+##  Installation & Lancement
 
 ```bash
 #  Installation des dépendances
@@ -87,19 +87,17 @@ npm run dev
 ```
 
 
-## 📸 Captures d'Écran additionnelles
+##  Captures d'Écran additionnelles
 
-Ici seront placés vos différents screenshots dans le dossier `./screenshots/` :
-- ./screenshots/dashboard.png
-- ./screenshots/revenue-forecast.png
-- `./screenshots/segments.png`
-- `./screenshots/anomalies.png`
+![Dashboard Preview](./screenshots/dashboard.png)
+![Revenue Forecast](./screenshots/revenue-forecast.png)
+![Customer Segmentation](./screenshots/segments.png)
+![Anomaly Detection](./screenshots/anomalies.png)
 
-*(Vous pouvez ajouter ces images manuellement dans le dossier `screenshots/`).*
 
 ---
 
-### 📝 Licence
+###  Licence
 Distribué sous la **Licence MIT**. Voir le fichier `LICENSE` pour plus d'informations.
 
 ---
